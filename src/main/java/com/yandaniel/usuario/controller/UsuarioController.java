@@ -23,7 +23,7 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<Usuario> salvaUsuario(@RequestBody Usuario usuario){
-        return ResponseEntity.ok(usuarioService.salvaUsuario(usuario));
+        return ResponseEntity.ok(usuarioService.salvaUsuario    (usuario));
     }
 
     @PostMapping("/login")
@@ -32,7 +32,7 @@ public class UsuarioController {
                 new UsernamePasswordAuthenticationToken(usuarioDTO.getEmail(),
                         usuarioDTO.getSenha())
         );
-        return "Bearer" + jwtUtil.generateToken(authentication.getName());
+        return "Bearer " + jwtUtil.generateToken(authentication.getName());
     }
 
     @GetMapping
