@@ -1,6 +1,7 @@
 package com.yandaniel.usuario.infrastructure.repository;
 
-import com.yandaniel.aprendendospring.infrastructure.entity.Endereco;
+
+import com.yandaniel.usuario.infrastructure.entity.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
