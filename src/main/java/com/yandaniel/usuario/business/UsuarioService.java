@@ -1,10 +1,12 @@
 package com.yandaniel.usuario.business;
 
 
+import com.yandaniel.usuario.controller.dtos.UsuarioDTO;
 import com.yandaniel.usuario.infrastructure.entity.Usuario;
 import com.yandaniel.usuario.infrastructure.exceptions.ConflictExceptions;
 import com.yandaniel.usuario.infrastructure.exceptions.ResourceNotFoundException;
 import com.yandaniel.usuario.infrastructure.repository.UsuarioRepository;
+import com.yandaniel.usuario.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
 
     public Usuario salvaUsuario(Usuario usuario) {
@@ -54,5 +57,11 @@ public class UsuarioService {
 
     public void deletaUsuarioPorEmail(String email){
         usuarioRepository.deleteByEmail(email);
+    }
+
+    public UsuarioDTO atualizaDadosDeUsuarios(String token, UsuarioDTO dto){
+        String email = jwtUtil.extrairEmailToken(token.substring(7));
+        Usuario usuarioEntity = usuarioRepository.findByEmail(email).orElseThrow(() ->
+                new ResourceNotFoundException("Email não localizado"));
     }
 }

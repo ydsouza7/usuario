@@ -1,5 +1,6 @@
 package com.yandaniel.usuario.controller.dtos;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class UsuarioDTO {
+public class TelefoneDTO {
 
-    private String email;
-    private String email;
-    private String senha;
-    private List<EnderecoDTO> enderecos;
-    private List<TelefoneDTO> telefones;
+    private String numero;
+    private String ddd;
 
 }
+
