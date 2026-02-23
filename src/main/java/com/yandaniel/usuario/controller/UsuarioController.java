@@ -2,7 +2,7 @@ package com.yandaniel.usuario.controller;
 
 
 import com.yandaniel.usuario.business.UsuarioService;
-import com.yandaniel.usuario.controller.dtos.UsuarioDTO;
+import com.yandaniel.usuario.business.dtos.UsuarioDTO;
 import com.yandaniel.usuario.infrastructure.entity.Usuario;
 import com.yandaniel.usuario.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,8 @@ public class UsuarioController {
     private final JwtUtil jwtUtil;
 
     @PostMapping
-    public ResponseEntity<Usuario> salvaUsuario(@RequestBody Usuario usuario){
-        return ResponseEntity.ok(usuarioService.salvaUsuario    (usuario));
+    public ResponseEntity<UsuarioDTO> salvaUsuario(@RequestBody UsuarioDTO usuarioDTO){
+        return ResponseEntity.ok(usuarioService.salvaUsuario(usuarioDTO));
     }
 
     @PostMapping("/login")
