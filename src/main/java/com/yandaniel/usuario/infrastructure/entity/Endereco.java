@@ -11,7 +11,7 @@ import lombok.*;
 @Table(name = "endereco")
 @Builder
 
-public class Endereco {
+public class Endereco  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

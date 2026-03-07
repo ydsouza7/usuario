@@ -11,6 +11,7 @@ import lombok.*;
 
 public class EnderecoDTO {
 
+    private long id;
     private String rua;
     private Long numero;
     private String complemento;
