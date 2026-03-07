@@ -2,7 +2,10 @@ package com.yandaniel.usuario.controller;
 
 
 import com.yandaniel.usuario.business.UsuarioService;
+import com.yandaniel.usuario.business.dtos.EnderecoDTO;
+import com.yandaniel.usuario.business.dtos.TelefoneDTO;
 import com.yandaniel.usuario.business.dtos.UsuarioDTO;
+import com.yandaniel.usuario.infrastructure.entity.Endereco;
 import com.yandaniel.usuario.infrastructure.entity.Usuario;
 import com.yandaniel.usuario.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +40,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Usuario> buscaUsuarioPorEmail(@RequestParam("email") String email){
+    public ResponseEntity<UsuarioDTO> buscaUsuarioPorEmail(@RequestParam("email") String email){
         return ResponseEntity.ok(usuarioService.buscarUsuarioPorEmail(email));
     }
 
@@ -53,4 +56,15 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token, dto));
     }
 
+    @PutMapping("/endereco")
+    public ResponseEntity<EnderecoDTO> atualizaEndereco(@RequestBody EnderecoDTO dto,
+                                                        @RequestParam("id")Long id){
+        return  ResponseEntity.ok(usuarioService.atualizaEndereco(id, dto));
+    }
+
+    @PutMapping("/telefone")
+    public ResponseEntity<TelefoneDTO> atualizaTelefone(@RequestBody TelefoneDTO dto,
+                                                        @RequestParam("id")Long id){
+        return  ResponseEntity.ok(usuarioService.atualizaTelefone(id, dto));
+    }
 }
